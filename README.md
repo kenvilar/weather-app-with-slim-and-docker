@@ -1,7 +1,7 @@
 # php-app-with-slim-and-docker
 PHP Application with SLIMPHP web framework using Docker connecting to third-party API
 
-```bash
+```docker
 $ docker pull php:latest
 $ docker pull php:5.6
 # run the hello.php (optional)
@@ -25,7 +25,7 @@ docker stop <container-name>
 # run the docker container again
 docker run -d --rm --name=weather-app -p 38000:80 -v $(pwd):/var/www/html php:apache
 # run the database container and named it as weather_db from image mysql with version  5.7
-docker run -d --rm --name=weather_db -e MYSQL_USER=kenvilar -e MYSQL_DATABASE=weather_app -e MYSQL_PASSWORD=kenvilarsamplepassord -e MYSQL_RANDOM_ROOT_PASSWORD=true mysql:5.7
+docker run -d --rm --name=weather_db -e MYSQL_USER=kenvilar -e MYSQL_DATABASE=weather_app -e MYSQL_PASSWORD=kenvilarsamplepassword -e MYSQL_RANDOM_ROOT_PASSWORD=true mysql:5.7
 # check if the database weather_app is running
 # first access the container bash with named weather_db
 docker exec -it weather_db bash
@@ -38,5 +38,17 @@ mysql> show databases;
 mysql> \q
 docker stop weather_db
 # to start mysql container with the database saved to our host system, this will create .data folder
-docker run -d --rm --name=weather_db -e MYSQL_USER=kenvilar -e MYSQL_DATABASE=weather_app -e MYSQL_PASSWORD=kenvilarsamplepassord -e MYSQL_RANDOM_ROOT_PASSWORD=true -v $(pwd)/.data:/var/lib/mysql mysql:5.7
+docker run -d --rm --name=weather_db -e MYSQL_USER=kenvilar -e MYSQL_DATABASE=weather_app -e MYSQL_PASSWORD=kenvilarsamplepassword -e MYSQL_RANDOM_ROOT_PASSWORD=true -v $(pwd)/.data:/var/lib/mysql mysql:5.7
+```
+
+# Create DB table
+```docker
+docker exec -it weather_db bash
+root@<id>: mysql -u kenvilar -p
+mysql> use weather_app
+mysql> create table locations
+       -> (id varchar(64) not null,
+       -> weather json null, 
+       -> last_updated timestamp default current_timestamp);
+mysql> show tables;
 ```
