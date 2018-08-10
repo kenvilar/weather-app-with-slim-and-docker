@@ -2,8 +2,22 @@
 require "vendor/autoload.php";
 
 $container = new \Slim\Container([
-    'http' => function () {
+    'http'  => function () {
         return new GuzzleHttp\Client();
+    },
+    'msqli' => function () {
+        $mysqli = new mysqli(
+            'weather_db',
+            'kenvilar',
+            'kenvilarsamplepassword',
+            'weather_app'
+        );
+        if ($mysqli->connect_errno) {
+            echo "Failed to connect to MYSQL: " . $mysqli->connect_error;
+            exit();
+        } else {
+            return $mysqli;
+        }
     }
 ]);
 
