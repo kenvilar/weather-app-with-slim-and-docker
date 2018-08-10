@@ -22,8 +22,7 @@ docker ps -a
 docker stop <ID>
 # stop the container (alternative)
 docker stop <container-name>
-# run the docker container again
-docker run -d --rm --name=weather-app -p 38000:80 -v $(pwd):/var/www/html php:apache
+# run the docker container again by typing this command docker run -d --rm --name=weather-app -p 38000:80 -v $(pwd):/var/www/html php:apache
 # run the database container and named it as weather_db from image mysql with version  5.7
 docker run -d --rm --name=weather_db -e MYSQL_USER=kenvilar -e MYSQL_DATABASE=weather_app -e MYSQL_PASSWORD=kenvilarsamplepassword -e MYSQL_RANDOM_ROOT_PASSWORD=true mysql:5.7
 # check if the database weather_app is running
@@ -46,9 +45,12 @@ docker run -d --rm --name=weather_db -e MYSQL_USER=kenvilar -e MYSQL_DATABASE=we
 docker exec -it weather_db bash
 root@<id>: mysql -u kenvilar -p
 mysql> use weather_app
-mysql> create table locations
-       -> (id varchar(64) not null,
-       -> weather json null, 
-       -> last_updated timestamp default current_timestamp);
+mysql> create table locations (id varchar(64) not null, weather json null, last_updated timestamp default current_timestamp);
 mysql> show tables;
+```
+
+# Linking the PHP container
+```docker
+docker run -d --rm --name=weather-app -p 38000:80 -v $(pwd):/var/www/html --link weather_db kenvilar/weather-app
+# if it gets an error then you have to remove the container named weather-app
 ```
