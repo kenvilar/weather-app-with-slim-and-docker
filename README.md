@@ -22,4 +22,6 @@ docker ps -a
 docker stop <ID>
 # stop the container (alternative)
 docker stop <container-name>
+# run the docker container again
+docker run -d --rm --name=weather-app -p 38000:80 -v $(pwd):/var/www/html php:apache
 ```
