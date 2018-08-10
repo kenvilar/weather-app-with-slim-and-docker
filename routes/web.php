@@ -4,7 +4,7 @@ $app->get('/locations/{id}', function ($request, $response, $args) {
     $id = $this->mysql->real_escape_string($args['id']);
     $results = $this->mysql->query("SELECT * FROM locations WHERE id='{$id}'");
     if ($results->num_rows > 0) {
-        $result = $results->fetch_assoc()['weather_app'];
+        $result = $results->fetch_assoc()['weather'];
     } else {
         try {
             $result = $this->http->get("https://www.metaweather.com/api/location/{$args['id']}/")
