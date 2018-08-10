@@ -5,4 +5,5 @@ PHP Application with SLIMPHP web framework using Docker connecting to third-part
 docker pull php:latest
 docker pull php:5.6
 docker run --rm -v $(pwd):/app php:latest php /app/hello.php
+docker run --rm -v $(pwd):/app composer:latest require slim/slim "^3.0"
 ```
