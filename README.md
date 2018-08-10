@@ -25,5 +25,5 @@ docker stop <container-name>
 # run the docker container again
 docker run -d --rm --name=weather-app -p 38000:80 -v $(pwd):/var/www/html php:apache
 # run the database container and named it as weather_db from image mysql with version  5.7
-docker run -d --rm --name=weather_db -e MYSQL_USER=kenvilar -e MYSQL_DATABASE=weather_app -e MYSQL_PASSWORD=kenvilarsamplepassord mysql:5.7
+docker run -d --rm --name=weather_db -e MYSQL_USER=kenvilar -e MYSQL_DATABASE=weather_app -e MYSQL_PASSWORD=kenvilarsamplepassord -e MYSQL_RANDOM_ROOT_PASSWORD=true mysql:5.7
 ```
