@@ -10,4 +10,6 @@ docker run --rm -v $(pwd):/app php:latest php /app/hello.php
 docker run --rm -v $(pwd):/app composer:latest require slim/slim "^3.0"
 # run the app
 docker run --rm -p 38000:80 -v $(pwd):/var/www/html php:apache
+# or run the app in detached mode
+docker run -d --rm -p 38000:80 -v $(pwd):/var/www/html php:apache
 ```
