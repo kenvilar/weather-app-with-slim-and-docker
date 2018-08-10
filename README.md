@@ -3,4 +3,6 @@ PHP Application with SLIMPHP web framework using Docker connecting to third-part
 
 ```bash
 docker pull php:latest
+docker pull php:5.6
+docker run --rm -v $(pwd):/app php:latest php /app/hello.php
 ```
