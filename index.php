@@ -2,10 +2,10 @@
 require "vendor/autoload.php";
 
 $container = new \Slim\Container([
-    'http'  => function () {
+    'http' => function () {
         return new GuzzleHttp\Client();
     },
-    'msqli' => function () {
+    'mysql' => function () {
         $mysqli = new mysqli(
             'weather_db',
             'kenvilar',

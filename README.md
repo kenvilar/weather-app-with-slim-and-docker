@@ -1,7 +1,7 @@
 # php-app-with-slim-and-docker
 PHP Application with SLIMPHP web framework using Docker connecting to third-party API
 
-```docker
+```
 $ docker pull php:latest
 $ docker pull php:5.6
 # run the hello.php (optional)
