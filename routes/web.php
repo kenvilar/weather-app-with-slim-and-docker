@@ -26,5 +26,12 @@ $app->get('/locations/{id}', function ($request, $response, $args) {
 });
 
 $app->delete('/locations/{id}', function ($request, $response, $args) {
-    return $response->withStatus(200)->write("Location {$args['id']} deleted.");
+    $id = $this->mysql->real_escape_string($args['id']);
+    $results = $this->mysql->query("SELECT * FROM locations WHERE id='{$id}'");
+
+    if ($results->num_rows > 0 && $this->mysql->query("DELETE FROM locations WHERE id='{$id}'")) {
+        return $response->withStatus(200)->write("Location {$args['id']} deleted.");
+    } else {
+        return $response->withStatus(404)->write("Location {$args['id']} not found.");
+    }
 });
