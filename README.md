@@ -12,4 +12,14 @@ docker run --rm -v $(pwd):/app composer:latest require slim/slim "^3.0"
 docker run --rm -p 38000:80 -v $(pwd):/var/www/html php:apache
 # or run the app in detached mode
 docker run -d --rm -p 38000:80 -v $(pwd):/var/www/html php:apache
+# name the container
+docker run -d --rm --name=weather-app -p 38000:80 -v $(pwd):/var/www/html php:apache
+# display running containers
+docker ps
+# or display all containers including the stopped containers
+docker ps -a
+# stop the container with id of three characters or more
+docker stop <ID>
+# stop the container (alternative)
+docker stop <container-name>
 ```
