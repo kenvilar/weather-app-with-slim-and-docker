@@ -7,10 +7,10 @@ $container = new \Slim\Container([
     },
     'mysql' => function () {
         $mysqli = new mysqli(
-            'weather_db',
-            'kenvilar',
-            'kenvilarsamplepassword',
-            'weather_app'
+            getenv('DATABASE_HOST'),
+            getenv('DATABASE_USER'),
+            getenv('DATABASE_PASSWORD'),
+            getenv('DATABASE_NAME')
         );
         if ($mysqli->connect_errno) {
             echo "Failed to connect to MYSQL: " . $mysqli->connect_error;
