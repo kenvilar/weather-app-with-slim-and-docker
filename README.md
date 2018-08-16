@@ -1,5 +1,6 @@
 # php-app-with-slim-and-docker
-PHP Application with SLIMPHP web framework using Docker connecting to third-party API
+PHP Application with SLIMPHP web framework using Docker connecting to third-party API   
+Login credentials below are just an example
 
 
 ## Build the image and tagged it as kenvilar/weather-app to easily create a container from this image
